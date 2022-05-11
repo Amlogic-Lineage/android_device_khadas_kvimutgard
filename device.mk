@@ -115,7 +115,7 @@ PRODUCT_COPY_FILES += \
     device/khadas/$(PRODUCT_DIR)/files/audio_effects.conf:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.conf \
     device/khadas/$(PRODUCT_DIR)/files/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml
 
-PRODUCT_CHARACTERISTICS := kvim4,nosdcard
+PRODUCT_CHARACTERISTICS := kvimutgard,nosdcard
 ifeq ($(BOARD_COMPILE_ATV), false)
 DEVICE_PACKAGE_OVERLAYS := \
     device/khadas/$(PRODUCT_DIR)/overlay
@@ -125,7 +125,7 @@ endif
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 
 
-$(call inherit-product, device/khadas/common/products/tv/t7/device.mk)
+$(call inherit-product, device/khadas/common/products/mbox/gxl/device.mk)
 
 #Dolby MS12 2.4 Decryption
 include device/khadas/common/dolby_ms12/dolby_ms12.mk

@@ -54,7 +54,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 # dexopt files are side-effects of already allowed files
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += %.odex %.vdex %.art
 
-PRODUCT_DIR := kvim4
+PRODUCT_DIR := kvimutgard
 
 #multiEncoder
 PRODUCT_PACKAGES += \
@@ -64,7 +64,7 @@ PRODUCT_PACKAGES += \
 
 NEED_ISP := true
 
-PRODUCT_SUPPORT_4K_UI := true
+PRODUCT_SUPPORT_4K_UI := false
 
 ifneq ($(BOARD_COMPILE_ATV), false)
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -91,7 +91,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 #                            TV
 #
 ########################################################################
-TARGET_BUILD_LIVETV := true
+TARGET_BUILD_LIVETV :=  false
 ifeq ($(TARGET_PRODUCT),ac212)
 TARGET_BUILD_LIVETV := false
 endif
@@ -132,7 +132,9 @@ include device/khadas/common/speech/speech.mk
 
 BOARD_ENABLE_FAR_FIELD_AEC := true
 
-$(call inherit-product, device/khadas/common/products/tv/product_tv.mk)
+BOARD_USES_ODM_EXTIMAGE := false
+
+$(call inherit-product, device/khadas/common/products/mbox/product_mbox.mk)
 $(call inherit-product, device/khadas/$(PRODUCT_DIR)/device.mk)
 $(call inherit-product, device/khadas/$(PRODUCT_DIR)/vendor_prop.mk)
 $(call inherit-product-if-exists, vendor/amlogic/$(PRODUCT_DIR)/device-vendor.mk)
@@ -161,10 +163,10 @@ TARGET_WITH_MEDIA_EXT_LEVEL := 4
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.hdmi.device_type=0
 
-PRODUCT_NAME := kvim4
-PRODUCT_DEVICE := kvim4
+PRODUCT_NAME := kvimutgard
+PRODUCT_DEVICE := kvimutgard
 PRODUCT_BRAND := Amlogic
-PRODUCT_MODEL := kvim4
+PRODUCT_MODEL := kvimutgard
 PRODUCT_MANUFACTURER := Amlogic
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -204,8 +206,8 @@ ifeq ($(BUILD_WITH_GAPPS_CONFIG),true)
 else
 PRODUCT_PACKAGES += TTS
 PRODUCT_COPY_FILES += \
-	device/khadas/kvim4/TTS_so/libtts_android.so:system/lib64/libtts_android.so \
-	device/khadas/kvim4/TTS_so/libtts_android_neon.so:system/lib64/libtts_android_neon.so
+	device/khadas/kvimutgard/TTS_so/libtts_android.so:system/lib64/libtts_android.so \
+	device/khadas/kvimutgard/TTS_so/libtts_android_neon.so:system/lib64/libtts_android_neon.so
 endif
 
 TARGET_BUILD_KERNEL_4_9 ?= false
@@ -355,10 +357,11 @@ PRODUCT_COPY_FILES += \
 
 $(call inherit-product, device/khadas/common/media.mk)
 
-GPU_HW_VERSION=r1p0
-include device/khadas/common/gpu/gondul-user-arm64.mk
 
-include device/khadas/common/products/tv/t7/t7.mk
+#GPU_HW_VERSION=r10p0
+include device/khadas/common/gpu/mali450-user-arm64.mk
+
+include device/khadas/common/products/mbox/gxl/gxl.mk
 #########################################################################
 #
 ##                                     Auto Patch
@@ -404,9 +407,9 @@ PRODUCT_PACKAGES += \
     TelephonyProvider
 
 PRODUCT_COPY_FILES += \
-    device/khadas/kvim4/ril/libquectel-ril/chat:system/bin/chat \
-    device/khadas/kvim4/ril/libquectel-ril/libquectel-ril.so:vendor/lib/libquectel-ril.so \
-    device/khadas/kvim4/ril/libquectel-ril/ip-up:system/etc/ppp/ip-up \
-    device/khadas/kvim4/ril/libquectel-ril/ip-down:system/etc/ppp/ip-down \
-    device/khadas/kvim4/ril/apns-conf.xml:system/etc/apns-conf.xml
+    device/khadas/kvimutgard/ril/libquectel-ril/chat:system/bin/chat \
+    device/khadas/kvimutgard/ril/libquectel-ril/libquectel-ril.so:vendor/lib/libquectel-ril.so \
+    device/khadas/kvimutgard/ril/libquectel-ril/ip-up:system/etc/ppp/ip-up \
+    device/khadas/kvimutgard/ril/libquectel-ril/ip-down:system/etc/ppp/ip-down \
+    device/khadas/kvimutgard/ril/apns-conf.xml:system/etc/apns-conf.xml
 #add end

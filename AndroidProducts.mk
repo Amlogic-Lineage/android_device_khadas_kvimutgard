@@ -14,8 +14,8 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := $(LOCAL_DIR)/kvim4.mk
+PRODUCT_MAKEFILES := $(LOCAL_DIR)/kvimutgard.mk
 COMMON_LUNCH_CHOICES := \
-    kvim4-eng \
-    kvim4-user \
-    kvim4-userdebug
+    kvimutgard-eng \
+    kvimutgard-user \
+    kvimutgard-userdebug

@@ -1,2 +1,2 @@
-require board=kvim4
+require board=kvimutgard
 require version-bootloader=01.01.180822.145544

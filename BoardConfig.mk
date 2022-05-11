@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-PRODUCT_DIR := kvim4
+PRODUCT_DIR := kvimutgard
 
 ifneq ($(ANDROID_BUILD_TYPE), 64)
 TARGET_CPU_ABI := armeabi-v7a
@@ -46,8 +46,8 @@ TARGET_NO_BOOTLOADER := false
 TARGET_NO_KERNEL := false
 TARGET_NO_RADIOIMAGE := true
 
-TARGET_BOARD_PLATFORM := t7
-TARGET_BOOTLOADER_BOARD_NAME := t7
+TARGET_BOARD_PLATFORM := gxl
+TARGET_BOOTLOADER_BOARD_NAME := gxl
 
 # Graphics & Display
 USE_OPENGL_RENDERER := true
@@ -64,8 +64,8 @@ TARGET_USE_DEFAULT_HDR_PROPERTY := true
 
 #MESONHWC CONFIG
 USE_HWC2 := true
-HWC_DISPLAY_NUM := 2
-HWC_PIPELINE := dual
+HWC_DISPLAY_NUM := 1
+#HWC_PIPELINE := dual
 
 ifeq ($(PRODUCT_SUPPORT_4K_UI), true)
 HWC_PRIMARY_FRAMEBUFFER_WIDTH := 3840
@@ -75,19 +75,20 @@ else
 HWC_PRIMARY_FRAMEBUFFER_WIDTH := 1920
 HWC_PRIMARY_FRAMEBUFFER_HEIGHT := 1080
 endif
-HWC_EXTEND_FRAMEBUFFER_WIDTH := 1920
-HWC_EXTEND_FRAMEBUFFER_HEIGHT := 1080
-HWC_PRIMARY_CONNECTOR_TYPE := panel
-HWC_EXTEND_CONNECTOR_TYPE := hdmi-only
-HWC_DYNAMIC_SWITCH_VIU := false
-BUILD_KERNEL_5_4 := true
+#HWC_EXTEND_FRAMEBUFFER_WIDTH := 1920
+#HWC_EXTEND_FRAMEBUFFER_HEIGHT := 1080
+HWC_PRIMARY_CONNECTOR_TYPE := hdmi
+#HWC_EXTEND_CONNECTOR_TYPE := "hdmi"
+#HWC_DYNAMIC_SWITCH_VIU := false
+BUILD_KERNEL_5_4 := false
+TARGET_BUILD_KERNEL_4_9 := true
 #HWC_ENABLE_HEADLESS_MODE := true
-HWC_ENABLE_SOFTWARE_VSYNC := true
-HWC_ENABLE_PRIMARY_HOTPLUG := true
+#HWC_ENABLE_SOFTWARE_VSYNC := true
+#HWC_ENABLE_PRIMARY_HOTPLUG := true
 #HWC_ENABLE_SECURE_LAYER_PROCESS := true
 #HWC_DISABLE_CURSOR_PLANE := true
 #disable hwc uvm dettach
-HWC_UVM_DETTACH := false
+#HWC_UVM_DETTACH := false
 
 include hardware/amlogic/gralloc/gralloc.device.mk
 
@@ -277,7 +278,7 @@ include device/khadas/common/soong_config/soong_config.mk
 ifeq ($(BOARD_USES_DYNAMIC_FINGERPRINT),true)
 #Building raw OEM images with "make custom_images"
 PRODUCT_CUSTOM_IMAGE_MAKEFILES := \
-    device/khadas/kvim4/oem/oem.mk
+    device/khadas/kvimutgard/oem/oem.mk
 
 #re-sign the raw ext4 OEM image
 ifeq ($(filter $(MAKECMDGOALS),custom_images),)
@@ -290,17 +291,17 @@ BOARD_AVB_OEM_ROLLBACK_INDEX_LOCATION := 1
 ifeq ($(TARGET_BUILD_KERNEL_4_9),true)
 BOARD_AVB_OEM_PARTITION_SIZE := 16777216
 BOARD_AVB_OEM_IMAGE_LIST := \
-    device/khadas/kvim4/oem/oem_4.9/oem.img
+    device/khadas/kvimutgard/oem/oem_4.9/oem.img
 else
 BOARD_AVB_OEM_PARTITION_SIZE := 33554432
 BOARD_AVB_OEM_IMAGE_LIST := \
-    device/khadas/kvim4/oem/oem.img
+    device/khadas/kvimutgard/oem/oem.img
 endif
 
 #Set the OEM partition mounting flag to Read Only
 TARGET_RECOVERY_FSTYPE_MOUNT_OPTIONS := ext4=ro
 #Building OTAs for OEM properties
-OEM_OTA_CONFIG := device/khadas/kvim4/oem/oem.prop
+OEM_OTA_CONFIG := device/khadas/kvimutgard/oem/oem.prop
 endif
 
 ifeq ($(BOARD_USES_VBMETA_SYSTEM),true)

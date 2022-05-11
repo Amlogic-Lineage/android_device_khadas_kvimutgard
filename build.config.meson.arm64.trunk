@@ -8,10 +8,10 @@ EXTRA_CMDS=''
 #It is a must to set GPU driver's version
 GPU_DRV_VERSION=r25p0
 
-KERNEL_DEVICETREE=kvim4
+KERNEL_DEVICETREE=kvimutgard
 DTBO_DEVICETREE=android_overlay_dt
-PRODUCT_DIRNAME=device/khadas/kvim4
-BOARD_DEVICENAME=kvim4
+PRODUCT_DIRNAME=device/khadas/kvimutgard
+BOARD_DEVICENAME=kvimutgard
 
 ENABLE_KASAN=false
 

@@ -1,6 +1,6 @@
 
 
-DEVICE_PRODUCT_PATH := device/khadas/kvim4
+DEVICE_PRODUCT_PATH := device/khadas/kvimutgard
 
 
 KERNEL_ROOTDIR := common
